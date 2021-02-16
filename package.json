@@ -1,0 +1,26 @@
+{
+  "name": "weather-api-2",
+  "version": "1.0.0",
+  "description": "This repo contains some starter code that works with the [Open Weather Map API](https://openweathermap.org).",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "coveralls": "^3.1.0",
+    "eslint": "^7.20.0",
+    "eslint-plugin-react": "^7.22.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "coveralls": "jest --coverage --coverageReporters=text-lcov | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rediet8abere/weather-api-2.git"
+  },
+  "author": "Rediet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rediet8abere/weather-api-2/issues"
+  },
+  "homepage": "https://github.com/Rediet8abere/weather-api-2#readme"
+}
