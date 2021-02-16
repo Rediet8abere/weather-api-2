@@ -62,6 +62,15 @@
       <p id="desc">
         <!-- description -->
       </p>
+      <p id="wind-speed">
+        <!-- wind-speed description -->
+      </p>
+
+      <p id="wind-deg">
+        <!-- wind description -->
+      </p>
+
+
       <form id="form">
         <input
           id="zip"
@@ -70,17 +79,39 @@
           title="Please Enter a valid Zip Code"
           pattern="^\d{5}(?:[-\s]\d{4})?$"
         >
+        <input
+          id="lat"
+          type="number"
+          placeholder="latitude"
+          title="Please Enter a valid number"
+          pattern="^\d{5}(?:[-\s]\d{4})?$"
+        >
+        <input
+          id="lon"
+          type="number"
+          placeholder="longitude"
+          title="Please Enter a valid number"
+          pattern="^\d{5}(?:[-\s]\d{4})?$"
+        >
+        <!-- lat, lon -->
         <button type="submit">Search</button>
       </form>
     </div>
 
     <script type='module'>
       import getWeather from './src/GetWeather.js'
+      import getWeatherByGeo from './src/ GetWeatherByGeo.js'
       // Get Element refererences
       const tempEl = document.getElementById('temp')
       const descEl = document.getElementById('desc')
       const formEl = document.getElementById('form')
       const zipInput = document.getElementById('zip')
+
+
+      const windSpeed  = document.getElementById('wind-speed')
+      const windDeg = document.getElementById('wind-deg')
+      const latInput = document.getElementById('lat')
+      const lonInput = document.getElementById('lon')
 
       // Define event listeners
       formEl.addEventListener('submit', async (e) => {
@@ -90,6 +121,13 @@
         const json = await getWeather('467355df4c808dd6134a3b64e9ace282', zip, unit)
         tempEl.innerHTML = json.main.temp
         descEl.innerHTML = json.weather[0].description
+        // getWeatherByZip(zip, unit)
+        // getWeatherByCity(city, unit)
+        const lat = latInput.value 
+        const lon = lonInput.value 
+        const geoJson = await getWeatherByGeo('467355df4c808dd6134a3b64e9ace282', lat, lon, unit)
+        windSpeed.innerHTML = geoJson.wind.speed + ' wind speed'
+        windDeg.innerHTML = geoJson.wind.deg + ' wind Deg'
         // getWeather('467355df4c808dd6134a3b64e9ace282', zip).then((json)=> {
         //   console.log("json------>", json)
         //   tempEl.innerHTML = json.main.temp
