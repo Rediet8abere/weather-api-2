@@ -1,15 +1,17 @@
 // Functions
-export default async function getWeather(apikey, zip, unit) {
-
-  const apiKey = apikey
-  //
-  const units = unit
-  const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
+async function getWeather(path) {
   const res = await fetch(path)
   const json = await res.json()
-
-  console.log("getWeather--->", res)
-  console.log("getWeather.main--->", res.main)
-    
+  console.log("getWeatherByGeo--->", res)
+  console.log("getWeatherByGeo.main--->", res.main)
   return json
+}
+export function getWeatherByGeo(apikey, lat, lon) {
+  const path = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}`
+  return getWeather(path)
+}
+
+export function getWeatherByZip(apiKey, zip, units) {
+  const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
+  return getWeather(path)
 }
